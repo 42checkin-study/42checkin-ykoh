@@ -2,9 +2,10 @@
   "name": "42checkin",
   "version": "0.1.0",
   "description": "42checkin clone coding",
-  "main": "index.ts",
+  "main": "./src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node ./src/server.ts"
   },
   "repository": {
     "type": "git",
