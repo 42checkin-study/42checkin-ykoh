@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/42checkin-study/42checkin-ykoh#readme",
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
     "@types/node": "^16.11.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

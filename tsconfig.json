@@ -16,7 +16,16 @@
       // different options with a single tsconfig.json.
     }
   },
+
   "compilerOptions": {
     // typescript options here
-  }
+  },
+
+  "include": [
+    "src/**/*"
+  ],
+  
+  "exclude": [
+    "node_modules"
+  ]
 }
