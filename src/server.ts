@@ -1,9 +1,5 @@
-import express from 'express';
+import { app } from './app';
 
-export const app: express.Application = express();
+const port = process.env.PORT || 5000;
 
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('Hello world!');
-});
-
-app.listen(5000);
+app.listen(port, () => console.log(`Server listen on port ${port}`));
