@@ -4,6 +4,7 @@
   "description": "simple checkin app using express, ts, sequelize and handlebars.",
   "main": "server.ts",
   "scripts": {
+    "start:dev": "ts-node ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/42checkin-study/42checkin-ykoh#readme",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
+    "@types/express": "^4.17.13",
     "@types/node": "^16.11.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -32,5 +34,8 @@
     "prettier": "^2.4.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
