@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/42checkin-study/42checkin-ykoh/issues"
   },
-  "homepage": "https://github.com/42checkin-study/42checkin-ykoh#readme"
+  "homepage": "https://github.com/42checkin-study/42checkin-ykoh#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  }
 }
