@@ -1,8 +1,12 @@
 import express from 'express';
 import path from 'path';
 import { engine } from 'express-handlebars';
+import morgan from 'morgan';
+import { winstonStream } from './config/logger';
 
 export const app = express();
+
+app.use(morgan('combined', { stream: winstonStream }));
 
 app.engine('handlebars', engine() as any);
 app.set('view engine', 'handlebars');
