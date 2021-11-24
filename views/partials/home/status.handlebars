@@ -1,15 +1,18 @@
-<ul class='list-group'>
+<div class='container'>
+  <h2>Cluster status</h2>
+  <ul class='list-group'>
 
-  {{#each clusters}}
-    <li
-      class='list-group-item d-flex justify-content-between align-items-center'
-    >
-      {{name}}
-      <span class='badge {{capacityBadgeBgColor capacity max}} rounded-pill'>
-        {{capacity}}/{{max}}
-      </span>
-    </li>
+    {{#each clusters}}
+      <li
+        class='list-group-item d-flex justify-content-between align-items-center'
+      >
+        {{name}}
+        <span class='badge {{capacityBadgeBgColor capacity max}} rounded-pill'>
+          {{capacity}}/{{max}}
+        </span>
+      </li>
 
-  {{/each}}
+    {{/each}}
 
-</ul>
+  </ul>
+</div>
