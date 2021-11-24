@@ -12,6 +12,11 @@ app.engine('handlebars', engine() as any);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '../views'));
 
-app.get('/', (req, res) => {
-  res.render('home');
+app.get('/', (_req, res) => {
+  const clusters = [
+    { name: '개포', capacity: 100, max: 150 },
+    { name: '서초', capacity: 1, max: 200 },
+    { name: '성수', capacity: 10, max: 20 },
+  ];
+  res.render('home', { title: 'home', clusters });
 });
