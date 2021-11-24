@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --forceExit --coverage --verbose",
+    "test": "jest --forceExit --detectOpenHandles --coverage --verbose",
     "test:watch": "npm run test -- --watchAll",
     "start": "ts-node ./src/server.ts",
     "start:dev": "nodemon ./src/server.ts",
