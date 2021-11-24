@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import { Cluster } from '../clusters/cluster.model';
 import {
   DB_DATABASE,
   DB_HOST,
@@ -14,5 +15,5 @@ export const sequelize = new Sequelize({
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE,
-  models: [],
+  models: [Cluster],
 });

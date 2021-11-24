@@ -19,6 +19,8 @@
 
   "compilerOptions": {
     // typescript options here
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
 
   "include": ["src/**/*"],
