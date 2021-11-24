@@ -6,14 +6,15 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USERNAME,
-} from './secrets';
+} from '../config/secrets';
 
 export const sequelize = new Sequelize({
-  dialect: 'postgres',
-  host: DB_HOST,
-  port: DB_PORT,
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE,
+  host: DB_HOST,
+  port: DB_PORT,
+  dialect: 'postgres',
+  timezone: '+09:00',
   models: [Cluster],
 });

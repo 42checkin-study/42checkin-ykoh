@@ -1,7 +1,7 @@
 import { app } from './app';
 import { logger } from './config/logger';
 import { STAGE } from './config/secrets';
-import { sequelize } from './config/sequelize';
+import { sequelize } from './database/sequelize';
 
 const port = process.env.PORT || 5000;
 
