@@ -10,5 +10,5 @@ export class Cluster extends Model {
   max!: number;
 
   @HasMany(() => Card)
-  cards: Card[];
+  cards!: Card[];
 }

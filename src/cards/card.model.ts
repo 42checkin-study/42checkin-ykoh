@@ -17,5 +17,5 @@ export class Card extends Model {
   clusterName!: string;
 
   @BelongsTo(() => Cluster)
-  cluster: Cluster;
+  cluster!: Cluster;
 }
