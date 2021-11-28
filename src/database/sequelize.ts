@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import { Card } from '../cards/card.model';
 import { Cluster } from '../clusters/cluster.model';
 import {
   DB_DATABASE,
@@ -16,5 +17,5 @@ export const sequelize = new Sequelize({
   port: DB_PORT,
   dialect: 'postgres',
   timezone: '+09:00',
-  models: [Cluster],
+  models: [Cluster, Card],
 });
