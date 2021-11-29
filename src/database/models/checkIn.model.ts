@@ -7,7 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Card } from '../cards/card.model';
+import { Card } from './card.model';
 
 @Table({ updatedAt: false, tableName: 'CheckIn' })
 export class CheckIn extends Model {

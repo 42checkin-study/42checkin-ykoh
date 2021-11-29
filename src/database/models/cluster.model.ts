@@ -1,5 +1,5 @@
 import { Column, HasMany, Model, Table } from 'sequelize-typescript';
-import { Card } from '../cards/card.model';
+import { Card } from './card.model';
 
 @Table({ timestamps: false, tableName: 'Cluster' })
 export class Cluster extends Model {

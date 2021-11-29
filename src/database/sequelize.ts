@@ -1,7 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { Card } from '../cards/card.model';
-import { CheckIn } from '../checkIns/checkIn.model';
-import { Cluster } from '../clusters/cluster.model';
+import { Card } from './models/card.model';
 import {
   DB_DATABASE,
   DB_HOST,
@@ -9,6 +7,8 @@ import {
   DB_PORT,
   DB_USERNAME,
 } from '../config/secrets';
+import { Cluster } from './models/cluster.model';
+import { CheckIn } from './models/checkIn.model';
 
 export const sequelize = new Sequelize({
   username: DB_USERNAME,

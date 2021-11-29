@@ -6,8 +6,8 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { CheckIn } from '../checkIns/checkIn.model';
-import { Cluster } from '../clusters/cluster.model';
+import { CheckIn } from './checkIn.model';
+import { Cluster } from './cluster.model';
 
 @Table({ timestamps: false, tableName: 'Card' })
 export class Card extends Model {
