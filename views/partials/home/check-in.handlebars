@@ -1,21 +1,20 @@
 <div class='container'>
   <h2>Check In</h2>
-  <form>
+  <form action='/checkIn' method='post'>
     <div class='input-group mb-3'>
       <span class='input-group-text' id='checkIn'>✔️</span>
       <input
+        name='cardId'
         type='number'
         class='form-control'
         placeholder='Card number'
         aria-label='Card number'
         aria-describedby='submit-button'
-        min='0'
-        max='9999'
         required
       />
       <button
         class='btn btn-outline-secondary'
-        type='button'
+        type='submit'
         id='submit-button'
       >
         Submit

@@ -4,9 +4,13 @@ import { engine } from 'express-handlebars';
 import morgan from 'morgan';
 import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
-import { index } from './home/home.controller';
+import * as homeController from './home/home.controller';
+import * as checkInController from './check-in/check-in.controller';
 
 export const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan('combined', { stream: winstonStream }));
 
@@ -20,4 +24,5 @@ app.engine(
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '../views'));
 
-app.get('/', index);
+app.get('/', homeController.index);
+app.post('/checkIn', checkInController.createCheckIn); // TODO input validation
