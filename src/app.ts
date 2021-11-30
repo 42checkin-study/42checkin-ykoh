@@ -4,7 +4,6 @@ import { engine } from 'express-handlebars';
 import morgan from 'morgan';
 import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
-import * as homeController from './home/home.controller';
 import * as checkInController from './check-in/check-in.controller';
 
 export const app = express();
@@ -24,5 +23,5 @@ app.engine(
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '../views'));
 
-app.get('/', homeController.index);
-app.post('/checkIn', checkInController.createCheckIn); // TODO input validation
+app.get('/checkin', checkInController.index);
+app.post('/checkin', checkInController.createCheckIn); // TODO input validation

@@ -1,5 +1,16 @@
-import { Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CheckIn } from '../database/models/checkIn.model';
+import { Cluster } from '../database/models/cluster.model';
+
+export const index = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const clusters: Cluster[] = await Cluster.findAll({ raw: true });
+  clusters.map((cluster: any) => (cluster.capacity = 10)); // STUB capacity용 임시코드 + any type interface 확장
+  res.render('check-in', { title: 'check-in', clusters });
+};
 
 export const createCheckIn = async (
   req: any,
@@ -20,5 +31,5 @@ export const createCheckIn = async (
 
   // NOTE 카드 id 등록
   await CheckIn.create({ userName, cardId: +cardId });
-  res.redirect('/');
+  res.redirect('/checkin');
 };
