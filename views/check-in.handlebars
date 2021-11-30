@@ -1,3 +1,37 @@
 {{> check-in/status}}
 {{> check-in/qr}}
 {{> check-in/check-in}}
+
+<script>
+  const alertPlaceholder = document.getElementById('alertPlaceholder')
+
+  function alert(message, type) {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+    alertPlaceholder.append(wrapper)
+  }
+
+  window.onload = () => {
+    const errors = new URL(location.href).searchParams.get('error')?.split(',');
+    let message;
+
+    switch(errors?.length) {
+      case 3:
+        message = `User(${errors[0]}) is already checked-in with a card(${errors[1]}) at '${errors[2]}'.`;
+        break;
+
+      case 1:
+        message = errors[0];
+        break;
+
+      default:
+        message = null;
+        break;
+    }
+
+    if (message) {
+      alert(message, 'danger');
+    }
+  };
+</script>

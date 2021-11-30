@@ -17,19 +17,24 @@ export const createCheckIn = async (
   res: Response,
   next: NextFunction,
 ) => {
-  // FIXME input validation + transfrom
-  // 1. transform to number
-  // 2. isNumber
-  // 3. is already exist
-  // 4. if fail, redirect to /?error=message
-
   // STUB req.user mocking
-  req.user = { name: 'ykoh23' };
-
+  req.user = { name: 'y1koh3223111' };
   const { name: userName } = req.user;
+
   const { cardId } = req.body;
 
-  // NOTE 카드 id 등록
-  await CheckIn.create({ userName, cardId: +cardId });
-  res.redirect('/checkin');
+  try {
+    await CheckIn.create({ userName, cardId });
+    res.redirect('/checkin');
+  } catch (error: any) {
+    let message: string;
+
+    if (error.parent?.code === '23503') {
+      message = `Card(${cardId}) is not exist.`;
+    } else {
+      message = error.parent?.parameters?.join(',');
+    }
+
+    res.redirect(`/checkin?error=${message}`);
+  }
 };
