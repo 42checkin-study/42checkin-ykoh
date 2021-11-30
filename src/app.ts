@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
 import * as checkInController from './check-in/check-in.controller';
+import { validation } from './middleware/validation.middleware';
+import { createCheckInDto } from './check-in/create-check-in.dto';
 
 export const app = express();
 
@@ -26,4 +28,8 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '../views'));
 
 app.get('/checkin', checkInController.index);
-app.post('/checkin', checkInController.createCheckIn); // TODO input validation
+app.post(
+  '/checkin',
+  validation(createCheckInDto),
+  checkInController.createCheckIn,
+);
