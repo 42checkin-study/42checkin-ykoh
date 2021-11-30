@@ -8,6 +8,8 @@ import * as checkInController from './check-in/check-in.controller';
 
 export const app = express();
 
+app.set('port', process.env.PORT || 5000);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
