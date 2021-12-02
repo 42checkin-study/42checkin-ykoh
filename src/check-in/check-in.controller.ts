@@ -25,7 +25,9 @@ export const index = async (
 
   await Promise.all(promises);
 
-  res.render('check-in', { title: 'check-in', clusters });
+  res.locals.clusters = clusters;
+
+  res.render('check-in', { title: 'check-in' });
 };
 
 export const createCheckIn = async (
