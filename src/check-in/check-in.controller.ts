@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { Card } from '../database/models/card.model';
 import { CheckIn } from '../database/models/checkIn.model';
 import { Cluster } from '../database/models/cluster.model';
 
@@ -8,7 +9,22 @@ export const index = async (
   next: NextFunction,
 ) => {
   const clusters: Cluster[] = await Cluster.findAll({ raw: true });
-  clusters.map((cluster: any) => (cluster.capacity = 10)); // STUB capacity용 임시코드 + any type interface 확장
+
+  const promises: Promise<Cluster>[] = clusters.map(
+    async (cluster: Cluster) => {
+      cluster.capacity = await CheckIn.count({
+        include: {
+          model: Card,
+          attributes: ['clusterName'],
+          where: { clusterName: cluster.name },
+        },
+      });
+      return cluster;
+    },
+  );
+
+  await Promise.all(promises);
+
   res.render('check-in', { title: 'check-in', clusters });
 };
 
@@ -25,6 +41,9 @@ export const createCheckIn = async (
 
   try {
     await CheckIn.create({ userName, cardId });
+
+    // TODO session에 정보 저장
+
     res.redirect('/checkin');
   } catch (error: any) {
     let message: string = 'Error occurred.';

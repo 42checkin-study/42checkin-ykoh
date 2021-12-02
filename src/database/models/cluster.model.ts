@@ -11,4 +11,6 @@ export class Cluster extends Model {
 
   @HasMany(() => Card)
   cards!: Card[];
+
+  capacity?: number;
 }
