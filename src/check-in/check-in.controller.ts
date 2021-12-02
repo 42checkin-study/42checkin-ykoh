@@ -1,32 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
-import { Card } from '../database/models/card.model';
 import { CheckIn } from '../database/models/checkIn.model';
-import { Cluster } from '../database/models/cluster.model';
+import * as checkInService from './check-in.service';
 
 export const index = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const clusters: Cluster[] = await Cluster.findAll({ raw: true });
-
-  const promises: Promise<Cluster>[] = clusters.map(
-    async (cluster: Cluster) => {
-      cluster.capacity = await CheckIn.count({
-        include: {
-          model: Card,
-          attributes: ['clusterName'],
-          where: { clusterName: cluster.name },
-        },
-      });
-      return cluster;
-    },
-  );
-
-  await Promise.all(promises);
-
-  res.locals.clusters = clusters;
-
+  res.locals.clusters = await checkInService.getClusters();
   res.render('check-in', { title: 'check-in' });
 };
 
@@ -46,19 +27,9 @@ export const createCheckIn = async (
 
     // TODO session에 정보 저장
 
-    res.redirect('/checkin');
+    res.redirect('/');
   } catch (error: any) {
-    let message: string = 'Error occurred.';
-
-    if (error.parent?.code === '23503') {
-      message = `Card(${cardId}) is not exist.`;
-    } else {
-      const parameters: string[] = error.parent?.parameters;
-
-      if (parameters?.length > 2) {
-        message = `User(${parameters[0]}) is already checked-in with a card(${parameters[1]}) at '${parameters[2]}'.`;
-      }
-    }
+    const message: string = checkInService.getErrorMessage(error);
     res.redirect(`/checkin?error=${message}`);
   }
 };
