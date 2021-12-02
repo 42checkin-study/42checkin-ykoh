@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
 import * as checkInController from './check-in/check-in.controller';
+import * as signInController from './sign-in/sign-in.controller';
 import { validation } from './middleware/validation.middleware';
 import { CreateCheckInDto } from './check-in/create-check-in.dto';
 
@@ -33,3 +34,5 @@ app.post(
   validation(CreateCheckInDto),
   checkInController.createCheckIn,
 );
+
+app.get('/signin', signInController.index);
