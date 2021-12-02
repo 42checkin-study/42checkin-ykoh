@@ -4,8 +4,9 @@ import { engine } from 'express-handlebars';
 import morgan from 'morgan';
 import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
-import * as checkInController from './check-in/check-in.controller';
+import * as homeController from './home/home.controller';
 import * as signInController from './sign-in/sign-in.controller';
+import * as checkInController from './check-in/check-in.controller';
 import { validation } from './middleware/validation.middleware';
 import { CreateCheckInDto } from './check-in/create-check-in.dto';
 
@@ -28,11 +29,13 @@ app.engine(
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '../views'));
 
+app.get('/', homeController.index);
+
+app.get('/signin', signInController.index);
+
 app.get('/checkin', checkInController.index);
 app.post(
   '/checkin',
   validation(CreateCheckInDto),
   checkInController.createCheckIn,
 );
-
-app.get('/signin', signInController.index);
