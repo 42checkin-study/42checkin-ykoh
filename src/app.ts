@@ -6,7 +6,7 @@ import { winstonStream } from './config/logger';
 import { capacityBadgeBgColor } from './config/helpers';
 import * as checkInController from './check-in/check-in.controller';
 import { validation } from './middleware/validation.middleware';
-import { createCheckInDto } from './check-in/create-check-in.dto';
+import { CreateCheckInDto } from './check-in/create-check-in.dto';
 
 export const app = express();
 
@@ -30,6 +30,6 @@ app.set('views', path.join(__dirname, '../views'));
 app.get('/checkin', checkInController.index);
 app.post(
   '/checkin',
-  validation(createCheckInDto),
+  validation(CreateCheckInDto),
   checkInController.createCheckIn,
 );
