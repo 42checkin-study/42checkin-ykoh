@@ -13,25 +13,10 @@
   }
 
   window.onload = () => {
-    const errors = new URL(location.href).searchParams.get('error')?.split(',');
-    let message;
+    const errors = new URL(location.href).searchParams.get('error');
 
-    switch(errors?.length) {
-      case 3:
-        message = `User(${errors[0]}) is already checked-in with a card(${errors[1]}) at '${errors[2]}'.`;
-        break;
-
-      case 1:
-        message = errors[0];
-        break;
-
-      default:
-        message = null;
-        break;
-    }
-
-    if (message) {
-      alert(message, 'danger');
+    if (errors) {
+      alert(errors, 'danger');
     }
   };
 </script>

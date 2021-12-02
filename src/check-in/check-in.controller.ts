@@ -27,14 +27,17 @@ export const createCheckIn = async (
     await CheckIn.create({ userName, cardId });
     res.redirect('/checkin');
   } catch (error: any) {
-    let message: string;
+    let message: string = 'Error occurred.';
 
     if (error.parent?.code === '23503') {
       message = `Card(${cardId}) is not exist.`;
     } else {
-      message = error.parent?.parameters?.join(',');
-    }
+      const parameters: string[] = error.parent?.parameters;
 
+      if (parameters?.length > 2) {
+        message = `User(${parameters[0]}) is already checked-in with a card(${parameters[1]}) at '${parameters[2]}'.`;
+      }
+    }
     res.redirect(`/checkin?error=${message}`);
   }
 };
